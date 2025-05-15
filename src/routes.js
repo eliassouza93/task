@@ -10,7 +10,6 @@ export const routes = [
         path: buildRoutePath('/task'),
         handler: (req, res) => {
             const tasks = database.select('task')
-
             return res.end(JSON.stringify(tasks))
         }
     },
@@ -19,7 +18,6 @@ export const routes = [
         path: buildRoutePath('/task:id'),
         handler: (req, res) => {
             const tasks = database.select('task')
-
             return res.end(JSON.stringify(tasks))
         }
     },
@@ -33,7 +31,6 @@ export const routes = [
                 title,
                 description,
             }
-
             database.insert('task', newTask)
             return res.writeHead(201).end(JSON.stringify(newTask))
         }
@@ -44,7 +41,6 @@ export const routes = [
         path: buildRoutePath('/task'),
         handler: (req, res) => {
             const tasks = database.select('task')
-
             return res.end(JSON.stringify(tasks))
         }
     },
@@ -53,7 +49,6 @@ export const routes = [
         path: buildRoutePath('/task/:id'),
         handler: (req, res) => {
             const { id } = req.params;
-    
             const task = database.select('task').find(task => task.id === id);
     
             if (!task) {
