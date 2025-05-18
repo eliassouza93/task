@@ -57,7 +57,7 @@ export const routes = [
     
             database.delete('task', id)
     
-            return res.writeHead(204).end();
+            return res.writeHead(204).end()
         }
     }
 ]
