@@ -55,7 +55,6 @@ export const routes = [
             const allTasks = database.select('task')
             exportTaskCSV(allTasks)
 
-
             return res.writeHead(201).end(JSON.stringify(newTask))
         }
     },
@@ -67,6 +66,27 @@ export const routes = [
             const tasks = database.select('task')
             return res.end(JSON.stringify(tasks))
         }
+    },
+    {
+        method: 'PATCH',
+        path: buildRoutePath('/task/:id/complete'),
+        handler: (req, res) => {
+            const { id } = req.params
+
+            const task = database.select('task').find(task => task.id === id);
+
+            if (!task) {
+                return res.writeHead(404).end(JSON.stringify({ message: 'Task not found' }))
+            }
+
+            database.update('task', id, { completed: true })
+
+            const updatedTasks = database.select('task')
+            exportTaskCSV(updatedTasks)
+
+            return res.end(JSON.stringify({ message: 'Task marked as completed' }))
+        }
+
     },
     {
         method: 'DELETE',
@@ -81,9 +101,9 @@ export const routes = [
 
             database.delete('task', id)
 
-              const remainingTasks = database.select('task')
-        deleteTaskCSV(remainingTasks)
-            
+            const remainingTasks = database.select('task')
+            deleteTaskCSV(remainingTasks)
+
             return res.writeHead(204).end()
         }
     }
