@@ -84,7 +84,7 @@ export const routes = [
             const updatedTasks = database.select('task')
             exportTaskCSV(updatedTasks)
 
-            return res.end(JSON.stringify({ message: 'Task marked as completed' }))
+            return res.end(JSON.stringify({ message: 'Tarefa completa' }))
         }
 
     },
