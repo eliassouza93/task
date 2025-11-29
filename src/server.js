@@ -19,5 +19,6 @@ const server = http.createServer(async (req, res) => {
 
     res.writeHead(404).end()
 });
+console.log('teste')
 
 server.listen(3333)
