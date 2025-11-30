@@ -22,3 +22,4 @@ const server = http.createServer(async (req, res) => {
 console.log('teste')
 
 server.listen(3333)
+console.lo('teste')
